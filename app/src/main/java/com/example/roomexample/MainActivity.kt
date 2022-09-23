@@ -23,9 +23,7 @@ import com.example.roomexample.Room.BookModel
 import com.example.roomexample.Room.BookViewModel
 import com.example.roomexample.ui.theme.RoomExampleTheme
 
-
 //Step 6 (optional)
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
