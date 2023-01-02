@@ -8,11 +8,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface BookDao {
     @Query("SELECT * FROM Book_Table ORDER BY ID ASC")
-    fun getBooks() : Flow<List<BookModel>>
+    fun getBooks(): Flow<List<BookModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addBook(bookModel: BookModel)
+    suspend fun addBook(bookModel: BookModel)
 
     @Delete
-    fun deleteBook(bookModel: BookModel)
+    suspend fun deleteBook(bookModel: BookModel)
 }

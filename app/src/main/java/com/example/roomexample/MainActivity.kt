@@ -15,7 +15,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
@@ -29,6 +28,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+
             RoomExampleTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -115,7 +115,9 @@ fun BookCard(
                 )
             }
             IconButton(
-                onClick = {viewModel.deleteBook(bookModel)}
+                onClick = {viewModel.deleteBook(bookModel)
+                    Log.i("MainActivity","delete icon clicked")
+                }
             ){
                 Icon(Icons.Filled.Delete, contentDescription = "delete")
             }
@@ -126,7 +128,10 @@ fun BookCard(
 @Composable
 fun FloatingButton(viewModel: BookViewModel) {
     FloatingActionButton(
-        onClick = { viewModel.openDialog = true },
+        onClick = { viewModel.openDialog = true
+            Log.i("MainActivity","Fab Button clicked")
+
+        },
         backgroundColor = MaterialTheme.colors.primary
     ) { Icon(Icons.Filled.Add, contentDescription = "Add Book") }
 }
@@ -147,13 +152,15 @@ fun BookAlertDialog(viewModel: BookViewModel) {
                     TextField(
                         value = title,
                         onValueChange = { title = it },
-                        placeholder = { Text(text = "Title") }
+                        placeholder = { Text(text = "Title") },
+                        singleLine = true
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     TextField(
                         value = author,
                         onValueChange = { author = it },
-                        placeholder = { Text(text = "Author") }
+                        placeholder = { Text(text = "Author") },
+                        singleLine = true
                     )
                 }
             },
@@ -163,7 +170,7 @@ fun BookAlertDialog(viewModel: BookViewModel) {
                         viewModel.openDialog = false
                         val book = BookModel(0, title = title, author = author)
                         viewModel.addBook(book)
-                        Log.e("MainActivity", "Add button Clicked")
+                        Log.i("MainActivity", "Add button Clicked")
                     }
                 ) {
                     Text(text = "Add")

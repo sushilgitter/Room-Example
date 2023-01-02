@@ -22,7 +22,7 @@ abstract class BookDb : RoomDatabase(){
                         BookDb::class.java,
                         "Book_list_database"
                     )
-                        .allowMainThreadQueries()
+//                        .allowMainThreadQueries()
                         .build()
                     INSTANCE = instance
                 }
